@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,13 +54,12 @@ public class GamePlayCTRL {
 
 	@Autowired
 	FinalScoreCardTeamTwoREPO finalScoreCardTeamTwoREPO;
-
+	@ExceptionHandler
 	@PostMapping("/setOverswicketsTeamNames")
 	public ResponseEntity<String> setOversWicketsTeams(@RequestParam float tovatlOver, @RequestParam int totalWickets,
 			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
 		return new ResponseEntity<String>(
 				inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
-
 	}
 
 	@GetMapping("/next-match")
