@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cricket.game.Exception.Response;
 import cricket.game.data.ScoreCardData;
 import cricket.game.entity.EachBallStatTeamOne;
 import cricket.game.entity.EachBallStatTeamTwo;
@@ -54,10 +55,18 @@ public class GamePlayCTRL {
 
 	@Autowired
 	FinalScoreCardTeamTwoREPO finalScoreCardTeamTwoREPO;
-	@ExceptionHandler
+	@Autowired
+	Response p;
+	
 	@PostMapping("/setOverswicketsTeamNames")
-	public ResponseEntity<String> setOversWicketsTeams(@RequestParam float tovatlOver, @RequestParam int totalWickets,
-			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
+	public ResponseEntity<String> setOversWicketsTeams (@RequestParam float tovatlOver, @RequestParam int totalWickets,
+			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {	
+		if(tovatlOver==0||totalWickets==0||series==0) {
+			throw new Response("over/totalwickets/series  can't be zero Please provide some value");
+		}
+		else if(teamOne==""||teamTwo=="") {
+			throw new Response("Team Value can't be null");
+		}
 		return new ResponseEntity<String>(
 				inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 	}
