@@ -29,3 +29,7 @@ public interface EachBallStatTeamOneREPO extends JpaRepository<EachBallStatTeamO
 	@Query(value = "SELECT * from each_ball_stat_teamone where id=:previousBall", nativeQuery = true)
 	public EachBallStatTeamOne previousBallStat(int previousBall);
 }
+
+
+
+//checking
