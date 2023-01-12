@@ -1,6 +1,7 @@
 package cricket.game.controller;
 
-import java.util.List;
+
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cricket.game.data.ScoreCardData;
-import cricket.game.entity.EachBallStatTeamOne;
-import cricket.game.entity.EachBallStatTeamTwo;
-import cricket.game.entity.FinalScoreCardTeamOne;
-import cricket.game.entity.FinalScoreCardTeamTwo;
 import cricket.game.repo.EachBallStatTeamOneREPO;
 import cricket.game.repo.EachBallStatTeamTwoREPO;
 import cricket.game.repo.FinalScoreCardTeamOneREPO;
@@ -170,6 +167,21 @@ public class GamePlayCTRL {
 		return null;
 	}
 
+	
+	@GetMapping("/team-one")
+	public ArrayList<String> teamOne() {
+		ArrayList<String> listOfTeamOne = new ArrayList<>(teamListSERV.teamOneList());
+		return listOfTeamOne;
+
+	}
+
+	@GetMapping("/team-two")
+	public ArrayList<String> teamTwo() {
+		ArrayList<String> listOfTeamTwo = new ArrayList<>(teamListSERV.teamTwoList());
+		return listOfTeamTwo;
+
+	}
+	
 	@GetMapping("/getAll-eachball-stat-teamone")
 	public ResponseEntity<?> eachballStatTeamoneEntity() {
 		return new ResponseEntity<>(inningSERV.eachBallStatTeamOneEntity(), HttpStatus.OK);
@@ -194,5 +206,3 @@ public class GamePlayCTRL {
 }
 
 
-
-//adding comment to check if push is working
