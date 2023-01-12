@@ -16,6 +16,9 @@ import cricket.game.repo.EachBallStatTeamTwoREPO;
 import cricket.game.repo.FinalScoreCardTeamOneREPO;
 import cricket.game.repo.FinalScoreCardTeamTwoREPO;
 
+/*
+ * This class acts as a Service class  to communicate with database 
+ */
 @Service
 public class InningSERV {
 

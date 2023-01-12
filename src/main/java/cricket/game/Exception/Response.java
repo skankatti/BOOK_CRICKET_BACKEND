@@ -1,9 +1,8 @@
 package cricket.game.Exception;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class Response extends RuntimeException{
 
 	public Response() {}
