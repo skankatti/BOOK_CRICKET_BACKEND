@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cricket.game.Exception.Response;
 import cricket.game.data.ScoreCardData;
 import cricket.game.repo.EachBallStatTeamOneREPO;
 import cricket.game.repo.EachBallStatTeamTwoREPO;
@@ -50,13 +52,20 @@ public class GamePlayCTRL {
 
 	@Autowired
 	FinalScoreCardTeamTwoREPO finalScoreCardTeamTwoREPO;
-
+	@Autowired
+	Response p;
+	
 	@PostMapping("/setOverswicketsTeamNames")
-	public ResponseEntity<String> setOversWicketsTeams(@RequestParam float tovatlOver, @RequestParam int totalWickets,
-			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
+	public ResponseEntity<String> setOversWicketsTeams (@RequestParam float tovatlOver, @RequestParam int totalWickets,
+			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {	
+		if(tovatlOver==0||totalWickets==0||series==0) {
+			throw new Response("over/totalwickets/series  can't be zero Please provide some value");
+		}
+		else if(teamOne==""||teamTwo=="") {
+			throw new Response("Team Value can't be null");
+		}
 		return new ResponseEntity<String>(
 				inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
-
 	}
 
 	@GetMapping("/next-match")
