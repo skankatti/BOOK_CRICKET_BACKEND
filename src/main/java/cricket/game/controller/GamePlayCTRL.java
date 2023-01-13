@@ -146,9 +146,8 @@ public class GamePlayCTRL {
 	}
 
 	@GetMapping("/toss")
-	public ResponseEntity<ScoreCardData> toss() {
-		inningSERV.toss();
-		return new ResponseEntity<ScoreCardData>(scoreCardData, HttpStatus.OK);
+	public ResponseEntity<?> toss() {
+		return new ResponseEntity<>(inningSERV.toss(),HttpStatus.OK);
 	}
 
 	@GetMapping("/new-match")
