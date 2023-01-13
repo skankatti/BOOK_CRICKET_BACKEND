@@ -1,11 +1,14 @@
 package cricket.game.service;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import cricket.game.Exception.InputException;
 import cricket.game.data.ScoreCardData;
 import cricket.game.entity.EachBallStatTeamOne;
 import cricket.game.entity.EachBallStatTeamTwo;
@@ -287,15 +290,21 @@ public class InningSERV {
 	}
 
 	public String setOversWicketsTeams(float tovatlOver, int totalWickets, String teamOne, String teamTwo, int series) {
-		scoreCardData.setTotalOvers(tovatlOver);
-		scoreCardData.setTotalWicket(totalWickets);
-		scoreCardData.setTeamOneName(teamOne);
-		scoreCardData.setTeamTwoName(teamTwo);
-		scoreCardData.setSeries(series);
-		scoreCardData.setInningType(1);
+		if(teamOne==null||teamTwo==null||series<1||tovatlOver<=0||totalWickets<=0) {
+			throw new InputException("invalid Input",HttpStatus.BAD_GATEWAY);
+		}
+		
+			scoreCardData.setTotalOvers(tovatlOver);
+			scoreCardData.setTotalWicket(totalWickets);
+			scoreCardData.setTeamOneName(teamOne);
+			scoreCardData.setTeamTwoName(teamTwo);
+			scoreCardData.setSeries(series);
+			scoreCardData.setInningType(1);
 
-		String message = "OverswicketsTeamNames Set Successfully";
-		return message;
+			String message = "OverswicketsTeamNames Set Successfully";
+			return message;
+		
+	
 
 	}
 

@@ -1,6 +1,5 @@
 package cricket.game.controller;
 
-
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cricket.game.Exception.Response;
+import cricket.game.Exception.InputException;
 import cricket.game.data.ScoreCardData;
 import cricket.game.repo.EachBallStatTeamOneREPO;
 import cricket.game.repo.EachBallStatTeamTwoREPO;
@@ -52,19 +51,19 @@ public class GamePlayCTRL {
 	@Autowired
 	FinalScoreCardTeamTwoREPO finalScoreCardTeamTwoREPO;
 	@Autowired
-	Response p;
-	
+	InputException p;
+
 	@PostMapping("/setOverswicketsTeamNames")
-	public ResponseEntity<String> setOversWicketsTeams (@RequestParam float tovatlOver, @RequestParam int totalWickets,
-			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {	
-		if(tovatlOver==0||totalWickets==0||series==0) {
-			throw new Response("over/totalwickets/series  can't be zero Please provide some value");
+	public ResponseEntity<?> setOversWicketsTeams(@RequestParam float tovatlOver, @RequestParam int totalWickets,
+			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
+		try {
+			return new ResponseEntity<>(
+					inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 		}
-		else if(teamOne==""||teamTwo=="") {
-			throw new Response("Team Value can't be null");
+		catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Input Missmatch/TotalOver/Wicket,teamName cannot be less than Zero or Null", HttpStatus.BAD_GATEWAY);
 		}
-		return new ResponseEntity<String>(
-				inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 	}
 
 	@GetMapping("/next-match")
@@ -175,7 +174,6 @@ public class GamePlayCTRL {
 		return null;
 	}
 
-	
 	@GetMapping("/team-one")
 	public ArrayList<String> teamOne() {
 		ArrayList<String> listOfTeamOne = new ArrayList<>(teamListSERV.teamOneList());
@@ -189,28 +187,25 @@ public class GamePlayCTRL {
 		return listOfTeamTwo;
 
 	}
-	
+
 	@GetMapping("/getAll-eachball-stat-teamone")
 	public ResponseEntity<?> eachballStatTeamoneEntity() {
 		return new ResponseEntity<>(inningSERV.eachBallStatTeamOneEntity(), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/getAll-eachball-stat-teamtwo")
 	public ResponseEntity<?> eachballStatTeamtwoEntity() {
 		return new ResponseEntity<>(inningSERV.eachBallStatTeamTwoEntity(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getAll-finalscorecard-teamone")
 	public ResponseEntity<?> finalScorecardTeamoneEntity() {
 		return new ResponseEntity<>(inningSERV.finalScoreCardTeamOneEnity(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getAll-finalscorecard-teamtwo")
 	public ResponseEntity<?> finalScorecardTeamtwoEntity() {
 		return new ResponseEntity<>(inningSERV.finalScoreCardTeamTwoEnity(), HttpStatus.OK);
 	}
 
 }
-
-
