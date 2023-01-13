@@ -60,7 +60,7 @@ public class InningSERV {
 
 	//Reseting All the Values to Start New Match
 	public ScoreCardData startNewMatch() {
-		endOfFirstInning();
+		playNextMatch();
 		scoreCardData.setTarget(0);
 		scoreCardData.setTotalmatchPlayed(0);
 		scoreCardData.setTeamoneWinCount(0);
@@ -83,6 +83,8 @@ public class InningSERV {
 	public ScoreCardData inning() {
 
 		if (scoreCardData.getInningType() == 1) {
+			
+			scoreCardData.setplayingTeamName(scoreCardData.getTossResult());
 
 			// Setting BatsmanName
 			if (scoreCardData.getTossResult().equalsIgnoreCase(scoreCardData.getTeamOneName())) {
@@ -284,6 +286,8 @@ public class InningSERV {
 		scoreCardData.setCurrentRunRate(null);
 		scoreCardData.setBatsmanRunRate(null);
 		scoreCardData.setplayingTeamName(null);
+		scoreCardData.setPlayerName(null);
+		scoreCardData.setBowlerName(null);
 
 		return scoreCardData;
 
