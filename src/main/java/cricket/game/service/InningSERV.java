@@ -221,8 +221,9 @@ public class InningSERV {
 
 			// inserting data of each ball status to EachBallstat Table for team one
 			eachBallStatTeamOneREPO.addDetails(scoreCardData.getEachHitCount(), scoreCardData.getBallCount(),
-					scoreCardData.getPlayerName(), scoreCardData.getBowlerName(), scoreCardData.getTotalScore(),
-					scoreCardData.getRandomRun(), scoreCardData.getCommentary(), scoreCardData.getBatsManRun());
+					scoreCardData.getPlayerName(), scoreCardData.getTotalScore(), scoreCardData.getRandomRun(),
+					scoreCardData.getCommentary(), scoreCardData.getBatsManRun(),scoreCardData.getOversCompleted()
+					,scoreCardData.getCurrentRunRate());//
 
 		} else if (scoreCardData.getInningType() == 2) {
 			// Code for Required RunRate for 2nd inning batting
@@ -235,7 +236,8 @@ public class InningSERV {
 			// inserting data of each ball status to EachBallstat Table for team 2
 			eachBallStatTeamTwoREPO.addDetails(scoreCardData.getEachHitCount(), scoreCardData.getBallCount(),
 					scoreCardData.getPlayerName(), scoreCardData.getTotalScore(), scoreCardData.getRandomRun(),
-					scoreCardData.getCommentary(), scoreCardData.getBatsManRun());//
+					scoreCardData.getCommentary(), scoreCardData.getBatsManRun(),scoreCardData.getOversCompleted()
+					,scoreCardData.getCurrentRunRate());//
 
 		}
 

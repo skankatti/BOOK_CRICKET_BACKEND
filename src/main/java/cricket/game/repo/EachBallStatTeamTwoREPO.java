@@ -17,10 +17,10 @@ public interface EachBallStatTeamTwoREPO extends JpaRepository<EachBallStatTeamT
 	@Transactional
 	@Modifying
 	@Query(value = "INSERT into each_ball_stat_teamtwo  (id, ball_count,batsman_name,total_score, current_ball_run,"
-			+ "commentary,batsman_runs) VALUES (:eachHitCount,:ballCount,:playerName,:totalScore,:currentBallRun,"
-			+ ":commentary,:batsmanRun)", nativeQuery = true)
+			+ "commentary,batsman_runs,overs,run_rate) VALUES (:eachHitCount,:ballCount,:playerName,:totalScore,:currentBallRun,"
+			+ ":commentary,:batsmanRun,:overs,:runRate)", nativeQuery = true)
 	void addDetails(int eachHitCount, int ballCount, String playerName, int totalScore, int currentBallRun,
-			String commentary, int batsmanRun);
+			String commentary, int batsmanRun,float overs, String runRate);
 	
 	@Transactional
 	@Modifying

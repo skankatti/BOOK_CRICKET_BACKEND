@@ -18,8 +18,8 @@ public interface FinalScoreCardTeamOneREPO extends JpaRepository<FinalScoreCardT
 			+ ":bowlerName,:playerRun,:commentary)", nativeQuery = true)
 
 	void addToFinalScoreCardTeamOne(int id,int ballPlayed, String playerName, String runRate, String commentary,
-			String bowlerName, int playerRun);
 	
+			String bowlerName, int playerRun);
 	
 
 	@Transactional

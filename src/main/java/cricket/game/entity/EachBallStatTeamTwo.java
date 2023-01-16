@@ -27,6 +27,27 @@ public class EachBallStatTeamTwo {
 	private String bowlerName;
 
 	private String commentary;
+	
+private float overs;
+	
+	private String runRate;
+	
+
+	public float getOvers() {
+		return overs;
+	}
+
+	public void setOvers(float overs) {
+		this.overs = overs;
+	}
+
+	public String getRunRate() {
+		return runRate;
+	}
+
+	public void setRunRate(String runRate) {
+		this.runRate = runRate;
+	}
 
 	public int getId() {
 		return id;
