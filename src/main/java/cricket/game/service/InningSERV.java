@@ -269,7 +269,7 @@ public class InningSERV {
 		scoreCardData.setBallCount(0);
 		scoreCardData.setRandomRun(0);
 		scoreCardData.setTotalScore(0);
-		scoreCardData.setTotalWicket(0);
+		scoreCardData.setTotalWicket(scoreCardData.getTotalWicket());
 		scoreCardData.setBatsManId(0);
 		scoreCardData.setBatsManRun(0);
 		scoreCardData.setBallCountForOver(0);
