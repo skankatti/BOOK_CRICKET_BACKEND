@@ -206,5 +206,9 @@ public class GamePlayCTRL {
 	public ResponseEntity<?> finalScorecardTeamtwoEntity() {
 		return new ResponseEntity<>(inningSERV.finalScoreCardTeamTwoEnity(), HttpStatus.OK);
 	}
+	@GetMapping("/scorecard-data")
+	public ResponseEntity<?> scorecardData() {
+		return new ResponseEntity<>(scoreCardData, HttpStatus.OK);
+	}
 
 }
