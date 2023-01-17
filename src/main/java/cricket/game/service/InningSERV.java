@@ -1,5 +1,6 @@
 package cricket.game.service;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
@@ -295,7 +296,7 @@ public class InningSERV {
 
 	}
 
-	public String setOversWicketsTeams(float tovatlOver, int totalWickets, String teamOne, String teamTwo, int series) {
+	public List<String> setOversWicketsTeams(float tovatlOver, int totalWickets, String teamOne, String teamTwo, int series) {
 		if (teamOne == null || teamTwo == null || series < 1 || tovatlOver <= 0 || totalWickets <= 0) {
 			throw new InputException("invalid Input", HttpStatus.BAD_GATEWAY);
 		}
@@ -306,9 +307,13 @@ public class InningSERV {
 		scoreCardData.setTeamTwoName(teamTwo);
 		scoreCardData.setSeries(series);
 		scoreCardData.setInningType(1);
-
-		String message = "OverswicketsTeamNames Set Successfully";
-		return message;
+		
+		List<String> teamNames= new ArrayList<String>();
+		
+		teamNames.add(scoreCardData.getTeamOneName());
+		teamNames.add(scoreCardData.getTeamTwoName());
+		
+		return teamNames;
 
 	}
 
