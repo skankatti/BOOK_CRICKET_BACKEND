@@ -59,10 +59,10 @@ public class GamePlayCTRL {
 		try {
 			return new ResponseEntity<>(
 					inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Input Missmatch/TotalOver/Wicket,teamName cannot be less than Zero or Null", HttpStatus.BAD_GATEWAY);
+			return new ResponseEntity<>("Input Missmatch/TotalOver/Wicket,teamName cannot be less than Zero or Null",
+					HttpStatus.BAD_GATEWAY);
 		}
 	}
 
@@ -126,9 +126,11 @@ public class GamePlayCTRL {
 			// Checking and setting the Tournament Result
 			if (scoreCardData.getTotalmatchPlayed() == scoreCardData.getSeries()) {
 				if (scoreCardData.getTeamoneWinCount() > scoreCardData.getTeamtwoWinCount()) {
-					scoreCardData.setTournamentResult(scoreCardData.getTeamOneName());
+					scoreCardData.setTournamentResult(scoreCardData.getTeamOneName() + " Won The Series ");
 				} else if (scoreCardData.getTeamtwoWinCount() > scoreCardData.getTeamoneWinCount()) {
-					scoreCardData.setTournamentResult(scoreCardData.getTeamTwoName());
+					scoreCardData.setTournamentResult(scoreCardData.getTeamTwoName() + " Won The Series ");
+				} else if (scoreCardData.getTeamtwoWinCount() == scoreCardData.getTeamoneWinCount()) {
+					scoreCardData.setTournamentResult(" Tournament Tie ");
 				}
 			}
 
@@ -147,7 +149,7 @@ public class GamePlayCTRL {
 
 	@GetMapping("/toss")
 	public ResponseEntity<?> toss() {
-		return new ResponseEntity<>(inningSERV.toss(),HttpStatus.OK);
+		return new ResponseEntity<>(inningSERV.toss(), HttpStatus.OK);
 	}
 
 	@GetMapping("/new-match")
@@ -206,6 +208,7 @@ public class GamePlayCTRL {
 	public ResponseEntity<?> finalScorecardTeamtwoEntity() {
 		return new ResponseEntity<>(inningSERV.finalScoreCardTeamTwoEnity(), HttpStatus.OK);
 	}
+
 	@GetMapping("/scorecard-data")
 	public ResponseEntity<?> scorecardData() {
 		return new ResponseEntity<>(scoreCardData, HttpStatus.OK);
