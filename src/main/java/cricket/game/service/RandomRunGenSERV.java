@@ -70,7 +70,7 @@ public class RandomRunGenSERV {
 		return arr[select];
 	}
 	public String ShowComFour(){
-		String [] arr = {"Four Runs", "Grate four", "Super four", "Splendid shot for four"};
+		String [] arr = {"Four Runs", "Greate four", "Super four", "Splendid shot for four"};
 	    Random random = new Random();
 
 	    // randomly selects an index from the arr
