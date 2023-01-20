@@ -278,7 +278,6 @@ public class InningSERV {
 		scoreCardData.setEachHitCount(0);
 		scoreCardData.setTarget(0);
 		scoreCardData.setWicketCount(0);
-		scoreCardData.setInningType(1);
 		scoreCardData.setRemainingScore(0);
 		scoreCardData.setOversCompleted(0);
 		scoreCardData.setRemainingBall(0);
@@ -298,7 +297,7 @@ public class InningSERV {
 
 	public List<String> setOversWicketsTeams(float tovatlOver, int totalWickets, String teamOne, String teamTwo, int series) {
 		if (teamOne == null || teamTwo == null || series < 1 || tovatlOver <= 0 || totalWickets <= 0) {
-			throw new InputException("invalid Input", HttpStatus.BAD_GATEWAY);
+			throw new InputException("invalid Input", HttpStatus.BAD_REQUEST);
 		}
 
 		scoreCardData.setTotalOvers(tovatlOver);
