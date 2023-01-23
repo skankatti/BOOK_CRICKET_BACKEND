@@ -61,7 +61,7 @@ public class GamePlayCTRL {
 					inningSERV.setOversWicketsTeams(tovatlOvers, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Input Missmatch/TotalOver/Wicket,teamName cannot be less than Zero or Null",
+			return new ResponseEntity<>("Input Missmatch/TotalOvers/Wicket,teamName cannot be less than Zero or Null",
 					HttpStatus.BAD_GATEWAY);
 		}
 	}
