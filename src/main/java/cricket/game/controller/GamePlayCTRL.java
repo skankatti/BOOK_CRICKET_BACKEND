@@ -77,14 +77,14 @@ public class GamePlayCTRL {
 
 	@GetMapping("/inning")
 	public ResponseEntity<ScoreCardData> inning() {
-
+		//First inning is Called in this condition 
 		if (scoreCardData.getOversCompleted() < scoreCardData.getTotalOvers()
 				&& scoreCardData.getWicketCount() < scoreCardData.getTotalWicket() && scoreCardData.getInningType() == 1
 				&& scoreCardData.getTotalmatchPlayed() < scoreCardData.getSeries()) {
 			inningSERV.inning();
 			return new ResponseEntity<ScoreCardData>(scoreCardData, HttpStatus.OK);
-
-		} else if (scoreCardData.getOversCompleted() < scoreCardData.getTarget()
+			//Second inning called in this condition
+		} else if (scoreCardData.getOversCompleted() < scoreCardData.getTotalOvers()
 				&& scoreCardData.getWicketCount() < scoreCardData.getTotalWicket()
 				&& scoreCardData.getTotalScore() <= scoreCardData.getTarget()
 				&& scoreCardData.getTotalmatchPlayed() < scoreCardData.getSeries()
