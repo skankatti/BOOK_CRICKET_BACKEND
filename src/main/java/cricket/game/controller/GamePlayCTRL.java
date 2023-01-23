@@ -84,7 +84,7 @@ public class GamePlayCTRL {
 			inningSERV.inning();
 			return new ResponseEntity<ScoreCardData>(scoreCardData, HttpStatus.OK);
 
-		} else if (scoreCardData.getOversCompleted() < scoreCardData.getTarget()
+		} else if (scoreCardData.getOversCompleted() < scoreCardData.getTotalOvers()
 				&& scoreCardData.getWicketCount() < scoreCardData.getTotalWicket()
 				&& scoreCardData.getTotalScore() <= scoreCardData.getTarget()
 				&& scoreCardData.getTotalmatchPlayed() < scoreCardData.getSeries()
