@@ -54,11 +54,11 @@ public class GamePlayCTRL {
 	InputException p;
 
 	@PostMapping("/setOverswicketsTeamNames")
-	public ResponseEntity<?> setOversWicketsTeams(@RequestParam float tovatlOver, @RequestParam int totalWickets,
+	public ResponseEntity<?> setOversWicketsTeams(@RequestParam float tovatlOvers, @RequestParam int totalWickets,
 			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
 		try {
 			return new ResponseEntity<>(
-					inningSERV.setOversWicketsTeams(tovatlOver, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
+					inningSERV.setOversWicketsTeams(tovatlOvers, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>("Input Missmatch/TotalOver/Wicket,teamName cannot be less than Zero or Null",
@@ -113,7 +113,7 @@ public class GamePlayCTRL {
 						scoreCardData.getCommentary(), scoreCardData.getBowlerName(), scoreCardData.getBatsManRun());
 			}
 
-			// setting the Result is any of the team wins the match
+			// setting the team win count if any of the team wins the match
 			if (scoreCardData.getResult() != null) {
 				if (scoreCardData.getResult().equalsIgnoreCase(scoreCardData.getTeamOneName())) {
 					scoreCardData.setTeamoneWinCount(scoreCardData.getTeamoneWinCount() + 1);
