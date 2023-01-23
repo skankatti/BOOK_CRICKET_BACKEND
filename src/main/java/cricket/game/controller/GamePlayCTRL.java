@@ -54,11 +54,11 @@ public class GamePlayCTRL {
 	InputException p;
 
 	@PostMapping("/setOverswicketsTeamNames")
-	public ResponseEntity<?> setOversWicketsTeams(@RequestParam float tovatlOvers, @RequestParam int totalWickets,
+	public ResponseEntity<?> setOversWicketsTeams(@RequestParam float totalOvers, @RequestParam int totalWickets,
 			@RequestParam String teamOne, @RequestParam String teamTwo, @RequestParam int series) {
 		try {
 			return new ResponseEntity<>(
-					inningSERV.setOversWicketsTeams(tovatlOvers, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
+					inningSERV.setOversWicketsTeams(totalOvers, totalWickets, teamOne, teamTwo, series), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>("Input Missmatch/TotalOvers/Wicket,teamName cannot be less than Zero or Null",
