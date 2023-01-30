@@ -9,4 +9,5 @@ phases:
     - echo Build complete.
 artifacts:
   files:
+  - target/cricket-app.jar
   discard-paths: true
