@@ -2,12 +2,11 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo Packaging JAR file...
-      - mvn clean package
+    - echo Packaging JAR file...
+    - mvn clean package
   post_build:
     commands:
-      - echo Build complete.
+    - echo Build complete.
 artifacts:
   files:
-    - target/cricket-app.jar
-  discard-paths: yes
+  discard-paths: true
