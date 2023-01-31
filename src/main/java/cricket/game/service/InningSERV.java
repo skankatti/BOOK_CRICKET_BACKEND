@@ -72,6 +72,8 @@ public class InningSERV {
 		scoreCardData.setRemainingScore(0);
 		scoreCardData.setBallCountForOver(0);
 		scoreCardData.setBatsmanBallCount(0);
+		scoreCardData.setTotalOvers(0);
+		scoreCardData.setCommentary(null);
 		scoreCardData.setBowlerId(0);
 		scoreCardData.setResult(null);
 		scoreCardData.setSeries(0);
