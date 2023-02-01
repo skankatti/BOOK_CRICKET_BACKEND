@@ -79,6 +79,7 @@ public class InningSERV {
 		scoreCardData.setSeries(0);
 		scoreCardData.setTeamOneName(null);
 		scoreCardData.setTeamTwoName(null);
+		scoreCardData.setTournamentResult(null);
 
 		return scoreCardData;
 
